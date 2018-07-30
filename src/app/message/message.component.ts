@@ -12,4 +12,11 @@ export class MessageComponent implements OnInit {
   ngOnInit() {
   }
 
+  // private const numberInput = document.getElementsByName('number');
+  // private messageInput = document.getElementsByName('message');
+  // public var button = document.getElementsByClassName("btn btn-secondary");
+  // private response = document.querySelector('.selector')
+
+  
 }
+

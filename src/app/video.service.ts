@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {Http,Response, Headers,RequestOptions} from '@angular/http';
 import { map } from 'rxjs/operators';
 import { Video } from './video';
-
+import {Register } from './register';
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class VideoService {
   private _getUrl = "/api/videos"
   private _postUrl = "/api/video"
   private _loginUrl = "/api/login"
+  private _contactUrl = "/api/register"
 
   constructor(private _http:Http) { }
 
@@ -33,6 +35,13 @@ export class VideoService {
     return this._http.post(this._loginUrl, JSON.stringify(data),options)
     .pipe(map((response: Response) => response.json()));
 
+  }
+
+  addcontact(data:Register){
+    let headers = new Headers({'Content-Type':'application/json'})
+    let options = new RequestOptions({ headers:headers})
+    return this._http.post(this._contactUrl, JSON.stringify(data),options)
+    .pipe(map((response: Response) => response.json()));
   }
 }
 

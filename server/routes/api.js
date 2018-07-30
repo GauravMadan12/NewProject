@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const Video = require('../models/video')
+const Regis = require('../models/register')
 
 const db = "mongodb://gauravuser:gaurav12@ds123971.mlab.com:23971/gmdata"
 mongoose.Promise = global.Promise
@@ -62,4 +63,21 @@ router.post('/login',function(req,res){
     })
 })
     
+//Post data to add contact
+router.post('/register',function(req,res){
+    console.log("Add new contact")
+    var newReg = new Regis()
+    newReg.name = req.body.name;
+    newReg.email = req.body.email;
+    newReg.phone  = req.body.phone;
+    newReg.save(function(err,insertedData){
+        if(err){
+            console.log("Error saving data")
+        }
+        else{
+            res.json(insertedData)
+        }
+    })
+})
+
 module.exports = router;

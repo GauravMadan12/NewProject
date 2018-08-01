@@ -3,6 +3,9 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const Video = require('../models/video')
 const Regis = require('../models/register')
+const bodyParser = require('body-parser')
+
+var urlencoded = bodyParser.urlencoded({extended:true})
 
 const db = "mongodb://gauravuser:gaurav12@ds123971.mlab.com:23971/gmdata"
 mongoose.Promise = global.Promise
@@ -77,6 +80,17 @@ router.post('/register',function(req,res){
         else{
             res.json(insertedData)
         }
+    })
+})
+
+router.get('/send',function(req,res,next){
+    router.render('api.msg91.com/api/sendhttp.php',{
+        sender:req.body.sender,
+        route:req.body.route,
+        mobiles:req.body.mobiles,
+        authkey:req.body.authkey,
+        country:req.body.country,
+        message:req.body.message
     })
 })
 

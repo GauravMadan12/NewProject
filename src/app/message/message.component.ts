@@ -1,21 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import {Message} from './../message';
+import {VideoService} from './../video.service';
+import {Http,Response} from '@angular/http';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
-  styleUrls: ['./message.component.css']
+  styleUrls: ['./message.component.css'],
+  providers: [VideoService]
 })
 export class MessageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private vidserv:VideoService, private http:Http) { }
+
 
   ngOnInit() {
   }
 
-  // private const numberInput = document.getElementsByName('number');
-  // private messageInput = document.getElementsByName('message');
-  // public var button = document.getElementsByClassName("btn btn-secondary");
-  // private response = document.querySelector('.selector')
+  msg:Array<Message>
+
+  // onSend(msg){
+  //   this.vidserv.sendMsg(msg)
+  //   .subscribe(resdata =>{ 
+       
+      
+  //     console.log(resdata)
+  //    })
+  // }
+  
+  onSend(msg){
+    this.vidserv.sendMsg(msg).subscribe(resMsg => console.log(resMsg.json()))
+  }
 
   
 }

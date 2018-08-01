@@ -26,6 +26,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "mongoose": "^5.2.5",
+    "msg91": "0.0.6",
     "nexmo": "^2.3.2",
     "ng-flash-messages": "^0.2.0",
     "rxjs": "^6.0.0",

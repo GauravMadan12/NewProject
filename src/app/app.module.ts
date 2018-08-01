@@ -17,6 +17,8 @@ import { MessageComponent } from './message/message.component';
 import { MailComponent } from './mail/mail.component';
 import { GroupComponent } from './group/group.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { GroupComponent } from './group/group.component';
     AppRoutingModule,
     HttpModule,
     FormsModule,
+
     NgFlashMessagesModule.forRoot()
   ],
   providers: [],

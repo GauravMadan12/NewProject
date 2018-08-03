@@ -12,7 +12,7 @@ import { NgFlashMessageService } from 'ng-flash-messages';
 })
 export class AddcontactComponent implements OnInit {
 
-  register:Array<Register>
+  register:Array<Register> = []
   selectedData: Register
 
   constructor( 

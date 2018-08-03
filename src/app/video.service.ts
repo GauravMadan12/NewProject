@@ -15,7 +15,7 @@ export class VideoService {
   private _postUrl = "/api/video"
   private _loginUrl = "/api/login"
   private _contactUrl = "/api/register"
-  // private _msgUrl = "/api/send"
+  private _mailUrl = "/api/mails"
 
   constructor(private _http:Http) { }
 
@@ -46,18 +46,18 @@ export class VideoService {
     return this._http.post(this._contactUrl, JSON.stringify(data),options)                                                                    
     .pipe(map((response: Response) => response.json()));
   }
-
-  // sendMsg(msg){
-  //   let headers = new Headers({'Content-Type':'application/json'})
-  //   let options = new RequestOptions({ headers:headers})
-  //   return this._http.post(this._msgUrl, JSON.stringify(msg),options)                                                                    
-  //   .pipe(map((response: Response) => response.json()));
-  // }
   
   sendMsg(msg){
         let headers = new Headers({'Content-Type':'application/json'})
     let options = new RequestOptions({ headers:headers})
     return this._http.get("http://api.msg91.com/api/sendhttp.php?sender="+msg.sender+"&route=4&mobiles="+msg.mobiles+"&authkey=228815AVZ7FrV8NH5b5dd1ed&country=91&message="+msg.message,options)
+    .pipe(map((response: Response) => response.json()));
+  }
+
+  sendMail(val){
+    let headers = new Headers({'Content-Type':'application/json'})
+    let options = new RequestOptions({ headers:headers})
+    return this._http.post(this._mailUrl, JSON.stringify(val),options)                                                                    
     .pipe(map((response: Response) => response.json()));
   }
 }

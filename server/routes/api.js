@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Video = require('../models/video')
 const Regis = require('../models/register')
 const bodyParser = require('body-parser')
+const nodemailer = require('nodemailer')
 
 var urlencoded = bodyParser.urlencoded({extended:true})
 
@@ -83,6 +84,7 @@ router.post('/register',function(req,res){
     })
 })
 
+// Sending Messages
 router.get('/send',function(req,res,next){
     router.render('api.msg91.com/api/sendhttp.php',{
         sender:req.body.sender,
@@ -93,5 +95,45 @@ router.get('/send',function(req,res,next){
         message:req.body.message
     })
 })
+
+// Sending Mails
+router.post('/mails',(req,res)=>{
+    const output = `<h3>Messgae:</h3>
+        <p>${req.body.message}</p>
+    `
+    let transporter = nodemailer.createTransport({
+        // host: 'mail.google.com',
+        // port: 587,
+        // secure: false, // true for 465, false for other ports
+        service:'gmail',
+        auth: {
+            user: 'gmadan046@gmail.com', // generated ethereal user
+            pass: 'gauravgreat' // generated ethereal password
+        },
+        tls:{
+            rejectUnauthorized:false
+        }
+    });
+
+    // setup email data with unicode symbols
+    let mailOptions = {
+        from: '"GM Productions" <gmadan046@gmail.com>', // sender address
+        to: req.body.to, // list of receivers
+        subject: req.body.subject, // Subject line
+        text: 'Hello world?', // plain text body
+        html:  output // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+        res.render('mail',{msg:'Email has been sent'})
+    });
+});
 
 module.exports = router;

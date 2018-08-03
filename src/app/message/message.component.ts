@@ -17,16 +17,6 @@ export class MessageComponent implements OnInit {
   ngOnInit() {
   }
 
-  msg:Array<Message>
-
-  // onSend(msg){
-  //   this.vidserv.sendMsg(msg)
-  //   .subscribe(resdata =>{ 
-       
-      
-  //     console.log(resdata)
-  //    })
-  // }
   
   onSend(msg){
     this.vidserv.sendMsg(msg).subscribe(resMsg => console.log(resMsg.json()))

@@ -16,6 +16,7 @@ import { AddcontactComponent } from './addcontact/addcontact.component';
 import { MessageComponent } from './message/message.component';
 import { MailComponent } from './mail/mail.component';
 import { GroupComponent } from './group/group.component';
+import { SenderlistComponent } from './senderlist/senderlist.component';
 
 
 
@@ -31,7 +32,8 @@ import { GroupComponent } from './group/group.component';
     AddcontactComponent,
     MessageComponent,
     MailComponent,
-    GroupComponent
+    GroupComponent,
+    SenderlistComponent
   ],
   imports: [
     BrowserModule,

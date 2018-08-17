@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
-const exphbs = require('express-handlebars')
+// const exphbs = require('express-handlebars')
 const nodemailer = require('nodemailer')
 
 
@@ -11,8 +11,8 @@ const PORT = 3000
 
 const app = express()
 
-app.engine('handlebars',exphbs)
-app.set('view engine','handlebars')
+// app.engine('handlebars',exphbs)
+// app.set('view engine','handlebars')
 
 app.use(express.static(path.join(__dirname,'dist/App')))
 

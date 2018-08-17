@@ -16,6 +16,9 @@ export class VideoService {
   private _loginUrl = "/api/login"
   private _contactUrl = "/api/register"
   private _mailUrl = "/api/mails"
+  private _groupUrl = "/api/data"
+  private _groupMail = "/api/gpmails"
+  private _groupMsg = "/api/http://api.msg91.com/api/v2/sendsms"
 
   constructor(private _http:Http) { }
 
@@ -50,7 +53,7 @@ export class VideoService {
   sendMsg(msg){
         let headers = new Headers({'Content-Type':'application/json'})
     let options = new RequestOptions({ headers:headers})
-    return this._http.get("http://api.msg91.com/api/sendhttp.php?sender="+msg.sender+"&route=4&mobiles="+msg.mobiles+"&authkey=228815AVZ7FrV8NH5b5dd1ed&country=91&message="+msg.message,options)
+    return this._http.get("http://api.msg91.com/api/sendhttp.php?sender="+msg.sender+"&route=4&mobiles="+msg.mobiles+"&authkey=####&country=91&message="+msg.message,options)
     .pipe(map((response: Response) => response.json()));
   }
 
@@ -58,6 +61,28 @@ export class VideoService {
     let headers = new Headers({'Content-Type':'application/json'})
     let options = new RequestOptions({ headers:headers})
     return this._http.post(this._mailUrl, JSON.stringify(val),options)                                                                    
+    .pipe(map((response: Response) => response.json()));
+  }
+
+  getData(val){
+    let headers = new Headers({'Content-Type':'application/json'})
+    let options = new RequestOptions({ headers:headers})
+    return this._http.post(this._groupUrl, JSON.stringify(val),options)
+    .pipe(map((response: Response) => response.json()));
+  }
+
+  sendGpMail(value,data,sub){
+    let headers = new Headers({'Content-Type':'application/json'})
+    let options = new RequestOptions({ headers:headers})
+    return this._http.post(this._groupMail,{data,value,sub},options)                                                                    
+    .pipe(map((response: Response) => response.json()));
+    // console.log(val)
+  }
+
+  sendMessage(val,msg){
+    let headers = new Headers({'Content-Type':'application/json'})
+    let options = new RequestOptions({ headers:headers})
+    return this._http.get("http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&mobiles="+val+"&authkey=#######&country=91&message="+msg,options)
     .pipe(map((response: Response) => response.json()));
   }
 }
